@@ -1,0 +1,9 @@
+version: "2"
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:9.6
+    environment:
+      POSTGRES_PASSWORD: "root"
+    ports:
+      - 5432:5432

@@ -1,0 +1,8 @@
+export const SEARCH_STARTED = "SEARCH_STARTED";
+export const GET_ARTIST_STARTED = "GET_ARTIST_STARTED";
+export const SET_QUERY_TERM = "SET_QUERY_TERM";
+export const SET_RESULTS = "SET_RESULTS";
+export const SET_ARTIST = "SET_ARTIST";
+export const TOKEN_UPDATED = "TOKEN_UPDATED";
+export const SET_ERROR = "SET_ERROR";
+export const SET_IS_LOADING = "SET_IS_LOADING";

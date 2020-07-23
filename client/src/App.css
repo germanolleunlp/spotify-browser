@@ -1,0 +1,16 @@
+#container {
+  min-height: 100vh;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+}
+
+#box {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}

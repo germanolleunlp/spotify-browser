@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+local: &local
+  <<: *default
+  host: postgres
+  user: postgres
+  password: root
+
+development:
+  <<: *local
+  database: spotify_api_development
+
+test:
+  <<: *local
+  database: spotify_api_test
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>

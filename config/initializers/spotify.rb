@@ -1,0 +1,11 @@
+module Spotify
+  class Urls
+    SPOTIFY_URL = ENV['SPOTIFY_URL']
+    SPOTIFY_APP_URL = ENV['SPOTIFY_APP_URL']
+  end
+
+  class Ids
+    SPOTIFY_CLIENT_ID = ENV['SPOTIFY_CLIENT_ID']
+    SPOTIFY_CLIENT_SECRET_ID = ENV['SPOTIFY_CLIENT_SECRET_ID']
+  end
+end
