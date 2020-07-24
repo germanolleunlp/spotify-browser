@@ -39,7 +39,7 @@ LogoIcon.propTypes = {
 LogoIcon.defaultProps = {
   className: "",
   size: "small",
-  color: "bg-default",
+  color: "primary",
 };
 
 export default LogoIcon;

@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const ErrorContent = ({ message, children }) => {
@@ -41,7 +41,7 @@ const ErrorContent = ({ message, children }) => {
       <Box className={classes.header}>
         <ErrorIcon data-testid="error-icon" className={classes.icon} />
         <Typography
-          figma={"figma-typography-text-1"}
+          variant="subtitle1"
           className={clsx(classes.default)}
           data-testid="error-title"
         >
@@ -49,7 +49,7 @@ const ErrorContent = ({ message, children }) => {
         </Typography>
       </Box>
       <Typography
-        figma={"figma-typography-text-1"}
+        variant="subtitle1"
         className={clsx(classes.default)}
         data-testid="error-content-message"
       >

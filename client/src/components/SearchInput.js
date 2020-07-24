@@ -17,15 +17,15 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   buttonText: {
-    color: theme.palette["bg-default"].main,
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const useInputStyles = makeStyles((theme) => ({
   root: {
     overflow: "hidden",
     borderRadius: "30px",
-    border: `solid 1px ${theme.palette["bg-default"].main}`,
+    border: `solid 1px ${theme.palette.common.white}`,
     padding: theme.spacing(2),
     backgroundColor: theme.palette.grey.main,
     "&:hover": {
@@ -40,14 +40,14 @@ const useInputStyles = makeStyles((theme) => ({
     fontSize: theme.typography.h5.fontSize,
     letterSpacing: "-.005em",
     fontWeight: 900,
-    caretColor: theme.palette["bg-spotify"].main,
+    caretColor: theme.palette.primary.main,
     boxSizing: "border-box",
-    color: theme.palette["bg-default"].main,
+    color: theme.palette.common.white,
     "&::placeholder": {
-      color: theme.palette["bg-default"].main,
+      color: theme.palette.common.white,
     },
     "&::selection": {
-      background: theme.palette["bg-spotify"].main,
+      background: theme.palette.primary.main,
     },
   },
   focused: {},
@@ -94,14 +94,10 @@ const SearchInput = ({ queryTerm, search }) => {
       />
       <Button
         className={clsx(classes.button)}
-        figma={"figma-button-display-btn-spotify-primary"}
         type="submit"
         data-testid="search-submit-button"
       >
-        <Typography
-          figma={"figma-typography-text-1"}
-          className={clsx(classes.buttonText)}
-        >
+        <Typography variant="subtitle1" className={clsx(classes.buttonText)}>
           Go
         </Typography>
       </Button>

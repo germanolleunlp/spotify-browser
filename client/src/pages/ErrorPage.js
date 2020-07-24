@@ -20,8 +20,8 @@ const tokenStorage = new TokenStorage();
 
 const useStyles = makeStyles((theme) => ({
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 export const ErrorPage = ({ isLoading, error, refreshToken, cleanToken }) => {
@@ -55,21 +55,14 @@ export const ErrorPage = ({ isLoading, error, refreshToken, cleanToken }) => {
     <Box data-testid="error-page">
       <ErrorContent message="Something went wrong :(">
         <Typography
-          figma={"figma-typography-text-1"}
+          variant="subtitle1"
           className={clsx(classes.default)}
           data-testid="error-message"
         >
           {error.message}
         </Typography>
-        <Button
-          onClick={onBackClick}
-          figma={"figma-button-display-btn-spotify-primary"}
-          data-testid="back-button"
-        >
-          <Typography
-            figma={"figma-typography-text-1"}
-            className={clsx(classes.default)}
-          >
+        <Button onClick={onBackClick} data-testid="back-button">
+          <Typography variant="subtitle1" className={clsx(classes.default)}>
             Back
           </Typography>
         </Button>

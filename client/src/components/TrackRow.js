@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     width: 50,
     height: 50,
-    borderRadius: 0,
     marginRight: theme.spacing(2),
     backgroundColor: "transparent",
     borderRadius: "10%",
@@ -46,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const TrackRow = ({ href, name, album, duration }) => {
@@ -76,8 +75,8 @@ const TrackRow = ({ href, name, album, duration }) => {
       <ListItemText
         primary={
           <Typography
+            variant="subtitle1"
             className={clsx(classes.name, classes.default)}
-            figma={"figma-typography-text-1"}
             data-testid="track-album-name"
           >
             {name}
@@ -85,8 +84,8 @@ const TrackRow = ({ href, name, album, duration }) => {
         }
         secondary={
           <Typography
+            variant="subtitle2"
             className={clsx(classes.album, classes.default)}
-            figma={"figma-typography-text-2"}
             data-testid="track-album-name"
           >
             {album.name}
@@ -98,8 +97,8 @@ const TrackRow = ({ href, name, album, duration }) => {
         className={classes.textRight}
         primary={
           <Typography
+            variant="subtitle2"
             className={clsx(classes.duration, classes.default)}
-            figma={"figma-typography-text-2"}
           >
             {duration}
           </Typography>

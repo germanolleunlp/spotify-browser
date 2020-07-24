@@ -40,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: ".015em",
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const SearchResultItem = ({
@@ -66,7 +66,7 @@ const SearchResultItem = ({
       <SearchResultImage image={image} name={name} icon={icon} />
       <Box className={classes.info}>
         <Typography
-          figma={"figma-typography-text-1"}
+          variant="subtitle1"
           className={clsx(classes.default)}
           noWrap
           data-testid="search-result-item-title"
@@ -74,7 +74,7 @@ const SearchResultItem = ({
           {title}
         </Typography>
         <Typography
-          figma={"figma-typography-text-2"}
+          variant="subtitle2"
           className={clsx(classes.default)}
           noWrap
           data-testid="search-result-item-subtitle"
