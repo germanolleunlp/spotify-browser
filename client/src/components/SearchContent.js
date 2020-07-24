@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     margin: `${theme.spacing(3)}px 0`,
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const SearchContent = ({ results }) => {
@@ -26,7 +26,7 @@ const SearchContent = ({ results }) => {
     <Box className={classes.root} data-testid="search-content">
       {(!results && (
         <Typography
-          figma={"figma-typography-display-4"}
+          variant="h4"
           className={clsx(classes.default)}
           data-testid="search-message"
         >

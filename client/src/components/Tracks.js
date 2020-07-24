@@ -13,7 +13,7 @@ const Tracks = ({ classes, items }) => {
   return (
     <Box className={classes.root} data-testid="tracks">
       <Typography
-        figma={"figma-typography-display-1"}
+        variant="h1"
         data-testid="tracks-title"
         className={clsx(classes.default)}
       >

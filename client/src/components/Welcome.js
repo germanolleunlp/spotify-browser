@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const Welcome = () => {
@@ -21,14 +21,14 @@ const Welcome = () => {
   return (
     <Box className={classes.root} data-testid="welcome">
       <Typography
-        figma={"figma-typography-display-4"}
+        variant="h4"
         className={clsx(classes.default)}
         data-testid="welcome-title"
       >
         Looking for music?
       </Typography>
       <Typography
-        figma={"figma-typography-display-4"}
+        variant="h4"
         className={clsx(classes.default)}
         data-testid="welcome-subtitle"
         gutterBottom

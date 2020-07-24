@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   colorSpotify: {
-    color: theme.palette["bg-spotify"] ? theme.palette["bg-spotify"].main : "primary"
-  }
+    color: theme.palette.primary.main,
+  },
 }));
 
 const Loader = () => {

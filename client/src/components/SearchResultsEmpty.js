@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const SearchResultsEmpty = ({ entity }) => {
@@ -23,7 +23,7 @@ const SearchResultsEmpty = ({ entity }) => {
   return (
     <Box className={classes.root} data-testid="search-results-empty">
       <Typography
-        figma={"figma-typography-text-1"}
+        variant="subtitle1"
         className={clsx(classes.default)}
         gutterBottom
         data-testid="search-results-empty-query"
@@ -31,7 +31,7 @@ const SearchResultsEmpty = ({ entity }) => {
         {`No ${entity} results found`}
       </Typography>
       <Typography
-        figma={"figma-typography-text-1"}
+        variant="subtitle1"
         className={clsx(classes.default)}
         data-testid="search-results-empty-message"
       >

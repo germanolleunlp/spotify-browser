@@ -21,7 +21,7 @@ const Artists = ({ classes, items, history }) => {
   return (
     <Box className={classes.root} data-testid="artists">
       <Typography
-        figma={"figma-typography-display-1"}
+        variant="h1"
         data-testid="artists-title"
         className={clsx(classes.default)}
       >

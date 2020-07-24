@@ -43,11 +43,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
+    color: theme.palette.common.white,
   },
   buttonText: {
-    color: theme.palette["bg-default"].main,
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const ArtistPage = ({
@@ -89,27 +89,18 @@ const ArtistPage = ({
     <Box className={classes.root} data-testid="artist-details">
       <Box className={classes.header} style={headerStyles}>
         <Box>
-          <Typography
-            figma={"figma-typography-display-1"}
-            className={clsx(classes.default)}
-          >
+          <Typography variant="h1" className={clsx(classes.default)}>
             {artist.name}
           </Typography>
-          <Typography
-            figma={"figma-typography-text-1"}
-            className={clsx(classes.default)}
-          >
+          <Typography variant="subtitle1" className={clsx(classes.default)}>
             Popularity: {popularity}/100
           </Typography>
         </Box>
         <Box>
           <Link to={SEARCH_URL}>
-            <Button
-              className={classes.button}
-              figma={"figma-button-display-btn-spotify-primary"}
-            >
+            <Button className={classes.button}>
               <Typography
-                figma={"figma-typography-text-1"}
+                variant="subtitle1"
                 className={clsx(classes.buttonText)}
               >
                 Back
@@ -120,19 +111,13 @@ const ArtistPage = ({
       </Box>
       <Box className={classes.content}>
         <Box className={classes.section}>
-          <Typography
-            figma={"figma-typography-display-2"}
-            className={clsx(classes.default)}
-          >
+          <Typography variant="h2" className={clsx(classes.default)}>
             Top Tracks
           </Typography>
           <ArtistTopTracks tracks={topTracks} />
         </Box>
         <Box className={classes.section}>
-          <Typography
-            figma={"figma-typography-display-2"}
-            className={clsx(classes.default)}
-          >
+          <Typography variant="h2" className={clsx(classes.default)}>
             Albums
           </Typography>
           <Albums albums={albums} />
