@@ -4,9 +4,9 @@ import clsx from "clsx";
 
 import MuiTypography from "@material-ui/core/Typography";
 
-const Typography = ({ children, className, figma, ...props }) => {
+const Typography = ({ children, className, ...props }) => {
   return (
-    <MuiTypography className={clsx(className, figma)} {...props}>
+    <MuiTypography className={clsx(className)} {...props}>
       {children}
     </MuiTypography>
   );
@@ -14,15 +14,10 @@ const Typography = ({ children, className, figma, ...props }) => {
 
 Typography.propTypes = {
   className: PropTypes.any,
-  figma: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
 };
 
 Typography.defaultProps = {
   className: "",
-  figma: "",
 };
 
 export default Typography;

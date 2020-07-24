@@ -3,20 +3,24 @@ import React, { Fragment } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-
-import { FigmaThemeProvider } from "./figma";
+import { createMuiTheme } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 
 import { Provider } from "react-redux";
 import { store } from "./redux";
+
+import theme from "./theme";
 
 import Router from "./Router";
 import "./App.css";
 
 const App = () => {
+  const muiTheme = createMuiTheme({ ...theme });
+
   return (
     <Fragment>
       <CssBaseline />
-      <FigmaThemeProvider>
+      <ThemeProvider theme={muiTheme}>
         <Container id="container" fixed data-testid="main-container">
           <Box id="box">
             <Provider store={store}>
@@ -24,7 +28,7 @@ const App = () => {
             </Provider>
           </Box>
         </Container>
-      </FigmaThemeProvider>
+      </ThemeProvider>
     </Fragment>
   );
 };

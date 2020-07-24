@@ -19,8 +19,8 @@ const tokenStorage = new TokenStorage();
 
 const useStyles = makeStyles((theme) => ({
   buttonText: {
-    color: theme.palette["bg-default"].main
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 export const HomePage = ({ isLoading, error }) => {
@@ -51,15 +51,8 @@ export const HomePage = ({ isLoading, error }) => {
   if (!tokenStorage.hasToken()) {
     return (
       <Box textAlign="center" data-testid="home-page">
-        <Button
-          onClick={onLoginLinkClick}
-          figma={"figma-button-display-btn-spotify-primary"}
-          data-testid="login-link"
-        >
-          <Typography
-            figma={"figma-typography-text-1"}
-            className={clsx(classes.buttonText)}
-          >
+        <Button onClick={onLoginLinkClick} data-testid="login-link">
+          <Typography variant="subtitle1" className={clsx(classes.buttonText)}>
             Login
           </Typography>
         </Button>

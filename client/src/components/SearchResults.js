@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     margin: `${theme.spacing(3)}px 0`,
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: theme.palette.common.white,
+  },
 }));
 
 const SearchResults = ({ results: { artists, tracks } }) => {
