@@ -8,6 +8,7 @@ package-lock.json
 
 # tmp
 /tmp
+/log
 
 # misc
 .DS_Store
