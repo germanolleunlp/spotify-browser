@@ -106,7 +106,7 @@ const TrackRow = ({ href, name, album, duration, likeable }) => {
         }
         data-testid="track-duration"
       />
-      {likeable && <LikeButton />}
+      {likeable && <LikeButton track={{ name, href }} />}
     </ListItem>
   );
 };
