@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchResultItem = ({
+  id,
   href,
   image,
   name,
@@ -90,12 +91,13 @@ const SearchResultItem = ({
           </Typography>
         </Box>
       </a>
-      {likeable && <LikeButton track={{ name, href }} />}
+      {likeable && <LikeButton track={{ id, title, href }} />}
     </Box>
   );
 };
 
 SearchResultItem.propTypes = {
+  id: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
   image: PropTypes.shape({
     url: PropTypes.string.isRequired,
