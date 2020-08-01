@@ -9,6 +9,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
 
+import LikeButton from "./LikeButton";
+
 import { ReactComponent as AlbumIcon } from "../assets/album.svg";
 
 import Typography from "./Typography";
@@ -49,19 +51,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TrackRow = ({ href, name, album, duration }) => {
+const TrackLink = ({ href, text, ...props }) => (
+  <Link href={href} rel="noopener noreferrer" target="_blank">
+    <Typography {...props}>{text}</Typography>
+  </Link>
+);
+
+const TrackRow = ({ href, name, album, duration, likeable }) => {
   const classes = useStyles();
   const image = album.images.slice(-1)[0];
 
   return (
-    <ListItem
-      className={classes.item}
-      component={Link}
-      href={href}
-      rel="noopener noreferrer"
-      target="_blank"
-      data-testid="track-row"
-    >
+    <ListItem className={classes.item} data-testid="track-row">
       <ListItemAvatar>
         <Avatar
           className={classes.avatar}
@@ -74,22 +75,22 @@ const TrackRow = ({ href, name, album, duration }) => {
       </ListItemAvatar>
       <ListItemText
         primary={
-          <Typography
+          <TrackLink
+            href={href}
+            text={name}
             variant="subtitle1"
             className={clsx(classes.name, classes.default)}
             data-testid="track-album-name"
-          >
-            {name}
-          </Typography>
+          />
         }
         secondary={
-          <Typography
+          <TrackLink
+            href={href}
+            text={album.name}
             variant="subtitle2"
             className={clsx(classes.album, classes.default)}
             data-testid="track-album-name"
-          >
-            {album.name}
-          </Typography>
+          />
         }
         data-testid="track-name"
       />
@@ -105,6 +106,7 @@ const TrackRow = ({ href, name, album, duration }) => {
         }
         data-testid="track-duration"
       />
+      {likeable && <LikeButton />}
     </ListItem>
   );
 };
@@ -121,12 +123,14 @@ TrackRow.propTypes = {
     ),
   }).isRequired,
   duration: PropTypes.string.isRequired,
+  likeable: PropTypes.bool,
 };
 
 TrackRow.defaultProps = {
   album: {
     images: [],
   },
+  likeable: false,
 };
 
 export default TrackRow;
