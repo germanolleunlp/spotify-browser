@@ -57,7 +57,7 @@ const TrackLink = ({ href, text, ...props }) => (
   </Link>
 );
 
-const TrackRow = ({ href, name, album, duration, likeable }) => {
+const TrackRow = ({ id, href, name, album, duration, likeable }) => {
   const classes = useStyles();
   const image = album.images.slice(-1)[0];
 
@@ -106,12 +106,13 @@ const TrackRow = ({ href, name, album, duration, likeable }) => {
         }
         data-testid="track-duration"
       />
-      {likeable && <LikeButton track={{ name, href }} />}
+      {likeable && <LikeButton track={{ id, title: name, href }} />}
     </ListItem>
   );
 };
 
 TrackRow.propTypes = {
+  id: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   album: PropTypes.shape({

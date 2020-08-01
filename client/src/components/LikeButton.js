@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import Modal from "./Modal";
+
+import { addToFavorites } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,18 +24,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LikeButton = ({ track }) => {
+const LikeButton = ({ track, addToFavorites, favorites }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
   const addToFavorite = () => {
-    console.log(`Add to favorite ${track.name} - ${track.href}`);
+    addToFavorites(track);
     toggleModal();
   };
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+
+  if (favorites[track.id]) {
+    return null;
+  }
 
   return (
     <Fragment>
@@ -47,7 +54,7 @@ const LikeButton = ({ track }) => {
       <Modal
         title="Add to Favorites"
         message={`¿Are you sure you want to add "${
-          track.name
+          track.title
         }" to your "Favorites" list?`}
         handleConfirm={addToFavorite}
         handleClose={toggleModal}
@@ -59,9 +66,21 @@ const LikeButton = ({ track }) => {
 
 LikeButton.propTypes = {
   track: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     href: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default LikeButton;
+const mapStateToProps = ({ root: { favorites } }) => ({
+  favorites,
+});
+
+const mapDispatchToProps = {
+  addToFavorites,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LikeButton);
