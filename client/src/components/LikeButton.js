@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+
+import Modal from "./Modal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,27 +21,47 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LikeButton = ({ onClick, ...props }) => {
+const LikeButton = ({ track }) => {
   const classes = useStyles();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const addToFavorite = () => {
+    console.log(`Add to favorite ${track.name} - ${track.href}`);
+    toggleModal();
+  };
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <IconButton
-      aria-label="like"
-      className={classes.root}
-      {...props}
-      onClick={onClick}
-    >
-      <FavoriteIcon />
-    </IconButton>
+    <Fragment>
+      <IconButton
+        aria-label="like"
+        className={classes.root}
+        onClick={toggleModal}
+        disableRipple
+      >
+        <FavoriteIcon />
+      </IconButton>
+      <Modal
+        title="Add to Favorites"
+        message={`¿Are you sure you want to add "${
+          track.name
+        }" to your "Favorites" list?`}
+        handleConfirm={addToFavorite}
+        handleClose={toggleModal}
+        isOpen={isOpen}
+      />
+    </Fragment>
   );
 };
 
 LikeButton.propTypes = {
-  onClick: PropTypes.func,
-};
-
-LikeButton.defaultProps = {
-  onClick: null,
+  track: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default LikeButton;

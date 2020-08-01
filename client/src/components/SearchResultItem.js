@@ -90,7 +90,7 @@ const SearchResultItem = ({
           </Typography>
         </Box>
       </a>
-      {likeable && <LikeButton />}
+      {likeable && <LikeButton track={{ name, href }} />}
     </Box>
   );
 };
