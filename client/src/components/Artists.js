@@ -33,6 +33,7 @@ const Artists = ({ classes, items, history }) => {
             <SearchResultItem
               data-testid="artist"
               key={id}
+              id={id}
               href={external_urls.spotify}
               name={name}
               image={images[1]}

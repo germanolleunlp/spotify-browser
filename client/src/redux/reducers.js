@@ -10,6 +10,7 @@ import {
   SET_ERROR,
   SET_IS_LOADING,
   ADD_TO_FAVORITES,
+  SET_ALERT,
 } from "./types";
 
 const INITIAL_STATE = {
@@ -19,6 +20,7 @@ const INITIAL_STATE = {
   isLoading: false,
   error: null,
   favorites: {},
+  alert: null,
 };
 
 const rootReducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -79,6 +81,12 @@ const rootReducer = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         favorites: { ...state.favorites, ...{ [id]: props } },
+      };
+    }
+    case SET_ALERT: {
+      return {
+        ...state,
+        alert: payload,
       };
     }
     default:
