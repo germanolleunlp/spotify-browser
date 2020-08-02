@@ -8,7 +8,7 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 
 import Modal from "./Modal";
 
-import { removeFromFavorites } from "../redux/actions";
+import { removeFromFavorites, setAlert } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,13 +24,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DislikeButton = ({ track, removeFromFavorites }) => {
+const DislikeButton = ({ track, removeFromFavorites, setAlert }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
   const removeFromFavs = () => {
     removeFromFavorites(track);
     toggleModal();
+    setAlert({
+      message: `You have removed "${
+        track.title
+      }" from your "Favorites" list successfully.`,
+    });
   };
 
   const toggleModal = () => {
@@ -68,6 +73,7 @@ DislikeButton.propTypes = {
 
 const mapDispatchToProps = {
   removeFromFavorites,
+  setAlert,
 };
 
 export default connect(
