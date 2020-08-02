@@ -17,10 +17,12 @@ export const ArtistTopTracks = ({ tracks }) => {
         return (
           <TrackRow
             key={id}
+            id={id}
             href={external_urls.spotify}
             name={name}
             album={album}
             duration={duration}
+            likeable
           />
         );
       })}

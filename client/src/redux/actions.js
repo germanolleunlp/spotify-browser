@@ -12,6 +12,8 @@ import {
   TOKEN_UPDATED,
   SET_ERROR,
   SET_IS_LOADING,
+  ADD_TO_FAVORITES,
+  SET_ALERT,
 } from "./types";
 
 import {
@@ -161,6 +163,24 @@ export const cleanToken = () => {
     dispatch(setIsLoading(true));
     tokenStorage.cleanToken().then(() => {
       dispatch(tokenUpdated());
+    });
+  };
+};
+
+export const addToFavorites = (track) => {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_TO_FAVORITES,
+      payload: track,
+    });
+  };
+};
+
+export const setAlert = (alert) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_ALERT,
+      payload: alert,
     });
   };
 };

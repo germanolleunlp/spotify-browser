@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
 import Typography from "./Typography";
+import Alert from "./Alert";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +36,7 @@ const Welcome = () => {
       >
         Find your favorite tracks and artists.
       </Typography>
+      <Alert />
     </Box>
   );
 };

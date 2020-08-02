@@ -5,14 +5,16 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
+import LikeButton from "./LikeButton";
 import SearchResultImage from "./SearchResultImage";
 import Typography from "./Typography";
 
 const useStyles = makeStyles((theme) => ({
   item: {
+    display: "flex",
+    flexFlow: "column nowrap",
     width: 200,
     margin: theme.spacing(1),
-    textDecoration: "none",
     [theme.breakpoints.down("sm")]: {
       width: 150,
     },
@@ -25,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("lg")]: {
       width: 300,
     },
+  },
+  link: {
+    textDecoration: "none",
   },
   info: {
     display: "flex",
@@ -45,48 +50,54 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchResultItem = ({
+  id,
   href,
   image,
   name,
   icon,
   title,
   subtitle,
+  likeable,
   ...attrs
 }) => {
   const classes = useStyles();
 
   return (
-    <a
-      href={href}
-      className={classes.item}
-      rel="noopener noreferrer"
-      target="_blank"
-      {...attrs}
-    >
-      <SearchResultImage image={image} name={name} icon={icon} />
-      <Box className={classes.info}>
-        <Typography
-          variant="subtitle1"
-          className={clsx(classes.default)}
-          noWrap
-          data-testid="search-result-item-title"
-        >
-          {title}
-        </Typography>
-        <Typography
-          variant="subtitle2"
-          className={clsx(classes.default)}
-          noWrap
-          data-testid="search-result-item-subtitle"
-        >
-          {subtitle}
-        </Typography>
-      </Box>
-    </a>
+    <Box className={classes.item}>
+      <a
+        className={classes.link}
+        href={href}
+        rel="noopener noreferrer"
+        target="_blank"
+        {...attrs}
+      >
+        <SearchResultImage image={image} name={name} icon={icon} />
+        <Box className={classes.info}>
+          <Typography
+            variant="subtitle1"
+            className={clsx(classes.default)}
+            noWrap
+            data-testid="search-result-item-title"
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="subtitle2"
+            className={clsx(classes.default)}
+            noWrap
+            data-testid="search-result-item-subtitle"
+          >
+            {subtitle}
+          </Typography>
+        </Box>
+      </a>
+      {likeable && <LikeButton track={{ id, title, href }} />}
+    </Box>
   );
 };
 
 SearchResultItem.propTypes = {
+  id: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
   image: PropTypes.shape({
     url: PropTypes.string.isRequired,
@@ -95,10 +106,12 @@ SearchResultItem.propTypes = {
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
+  likeable: PropTypes.bool,
 };
 
 SearchResultItem.defaultProps = {
   image: null,
+  likeable: false,
 };
 
 export default SearchResultItem;
