@@ -6,7 +6,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 
 import { setAlert } from "../redux/actions";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     top: "10%",
@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     transform: "translate(-50%, -50%)",
     backgroundColor: "#dff0d8",
     border: "1px solid #d0e9c6",
+    zIndex: theme.zIndex.alert,
   },
 }));
 
