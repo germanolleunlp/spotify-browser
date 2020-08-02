@@ -10,6 +10,7 @@ import {
   SET_ERROR,
   SET_IS_LOADING,
   ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES,
   SET_ALERT,
 } from "./types";
 
@@ -81,6 +82,14 @@ const rootReducer = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         favorites: { ...state.favorites, ...{ [id]: props } },
+      };
+    }
+    case REMOVE_FROM_FAVORITES: {
+      const { id } = payload;
+
+      return {
+        ...state,
+        favorites: { ...state.favorites, ...{ [id]: undefined } },
       };
     }
     case SET_ALERT: {
