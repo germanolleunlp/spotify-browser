@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 
 import Modal from "./Modal";
+
+import { removeFromFavorites } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DislikeButton = ({ track }) => {
+const DislikeButton = ({ track, removeFromFavorites }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
-  const removeFromFavorites = () => {
+  const removeFromFavs = () => {
+    removeFromFavorites(track);
     toggleModal();
   };
 
@@ -47,7 +51,7 @@ const DislikeButton = ({ track }) => {
         message={`¿Are you sure you want to remove "${
           track.title
         }" from your "Favorites" list?`}
-        handleConfirm={removeFromFavorites}
+        handleConfirm={removeFromFavs}
         handleClose={toggleModal}
         isOpen={isOpen}
       />
@@ -62,4 +66,11 @@ DislikeButton.propTypes = {
   }).isRequired,
 };
 
-export default DislikeButton;
+const mapDispatchToProps = {
+  removeFromFavorites,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(DislikeButton);
