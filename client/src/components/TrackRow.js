@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
@@ -9,11 +10,10 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
 
-import LikeButton from "./LikeButton";
-
 import { ReactComponent as AlbumIcon } from "../assets/album.svg";
-
 import Typography from "./Typography";
+import LikeButton from "./LikeButton";
+import DislikeButton from "./DislikeButton";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -57,9 +57,10 @@ const TrackLink = ({ href, text, ...props }) => (
   </Link>
 );
 
-const TrackRow = ({ id, href, name, album, duration, likeable }) => {
+const TrackRow = ({ id, href, name, album, duration, favorites }) => {
   const classes = useStyles();
   const image = album.images.slice(-1)[0];
+  const liked = favorites[id];
 
   return (
     <ListItem className={classes.item} data-testid="track-row">
@@ -106,7 +107,11 @@ const TrackRow = ({ id, href, name, album, duration, likeable }) => {
         }
         data-testid="track-duration"
       />
-      {likeable && <LikeButton track={{ id, title: name, href }} />}
+      {!!liked ? (
+        <DislikeButton />
+      ) : (
+        <LikeButton track={{ id, title: name, href }} />
+      )}
     </ListItem>
   );
 };
@@ -124,14 +129,16 @@ TrackRow.propTypes = {
     ),
   }).isRequired,
   duration: PropTypes.string.isRequired,
-  likeable: PropTypes.bool,
 };
 
 TrackRow.defaultProps = {
   album: {
     images: [],
   },
-  likeable: false,
 };
 
-export default TrackRow;
+const mapStateToProps = ({ root: { favorites } }) => ({
+  favorites,
+});
+
+export default connect(mapStateToProps)(TrackRow);
