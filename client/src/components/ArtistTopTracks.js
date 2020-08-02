@@ -22,7 +22,6 @@ export const ArtistTopTracks = ({ tracks }) => {
             name={name}
             album={album}
             duration={duration}
-            likeable
           />
         );
       })}

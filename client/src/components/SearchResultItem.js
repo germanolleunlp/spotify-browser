@@ -1,13 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
-import LikeButton from "./LikeButton";
-import SearchResultImage from "./SearchResultImage";
 import Typography from "./Typography";
+import SearchResultImage from "./SearchResultImage";
+import LikeButton from "./LikeButton";
+import DislikeButton from "./DislikeButton";
 
 const useStyles = makeStyles((theme) => ({
   item: {
@@ -58,9 +60,11 @@ const SearchResultItem = ({
   title,
   subtitle,
   likeable,
+  favorites,
   ...attrs
 }) => {
   const classes = useStyles();
+  const liked = favorites[id];
 
   return (
     <Box className={classes.item}>
@@ -91,7 +95,12 @@ const SearchResultItem = ({
           </Typography>
         </Box>
       </a>
-      {likeable && <LikeButton track={{ id, title, href }} />}
+      {likeable &&
+        (!!liked ? (
+          <DislikeButton />
+        ) : (
+          <LikeButton track={{ id, title, href }} />
+        ))}
     </Box>
   );
 };
@@ -114,4 +123,8 @@ SearchResultItem.defaultProps = {
   likeable: false,
 };
 
-export default SearchResultItem;
+const mapStateToProps = ({ root: { favorites } }) => ({
+  favorites,
+});
+
+export default connect(mapStateToProps)(SearchResultItem);
