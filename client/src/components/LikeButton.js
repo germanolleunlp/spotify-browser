@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LikeButton = ({ track, addToFavorites, favorites, setAlert }) => {
+const LikeButton = ({ track, addToFavorites }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,10 +41,6 @@ const LikeButton = ({ track, addToFavorites, favorites, setAlert }) => {
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
-
-  if (favorites[track.id]) {
-    return null;
-  }
 
   return (
     <Fragment>
@@ -77,16 +73,12 @@ LikeButton.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = ({ root: { favorites } }) => ({
-  favorites,
-});
-
 const mapDispatchToProps = {
   addToFavorites,
   setAlert,
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(LikeButton);
