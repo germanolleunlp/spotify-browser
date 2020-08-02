@@ -28,7 +28,7 @@ const LikeButton = ({ track, addToFavorites, setAlert }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
-  const addToFavorite = () => {
+  const addToFavs = () => {
     addToFavorites(track);
     toggleModal();
     setAlert({
@@ -57,7 +57,7 @@ const LikeButton = ({ track, addToFavorites, setAlert }) => {
         message={`¿Are you sure you want to add "${
           track.title
         }" to your "Favorites" list?`}
-        handleConfirm={addToFavorite}
+        handleConfirm={addToFavs}
         handleClose={toggleModal}
         isOpen={isOpen}
       />
