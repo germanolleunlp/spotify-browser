@@ -1,4 +1,7 @@
 const theme = {
+  zIndex: {
+    alert: 1600,
+  },
   palette: {
     primary: {
       main: "#1DB954",

@@ -108,7 +108,7 @@ const TrackRow = ({ id, href, name, album, duration, favorites }) => {
         data-testid="track-duration"
       />
       {!!liked ? (
-        <DislikeButton />
+        <DislikeButton track={{ id, title: name }} />
       ) : (
         <LikeButton track={{ id, title: name, href }} />
       )}
