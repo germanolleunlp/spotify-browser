@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LikeButton = ({ track, addToFavorites }) => {
+const LikeButton = ({ track, addToFavorites, setAlert }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+
+import Modal from "./Modal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,27 +21,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DislikeButton = ({ onClick, ...props }) => {
+const DislikeButton = ({ track }) => {
   const classes = useStyles();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const removeFromFavorites = () => {
+    toggleModal();
+  };
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <IconButton
-      aria-label="dislike"
-      className={classes.root}
-      {...props}
-      onClick={onClick}
-    >
-      <DeleteOutlineIcon />
-    </IconButton>
+    <Fragment>
+      <IconButton
+        aria-label="dislike"
+        className={classes.root}
+        onClick={toggleModal}
+      >
+        <DeleteOutlineIcon />
+      </IconButton>
+      <Modal
+        title="Remove from Favorites"
+        message={`¿Are you sure you want to remove "${
+          track.title
+        }" from your "Favorites" list?`}
+        handleConfirm={removeFromFavorites}
+        handleClose={toggleModal}
+        isOpen={isOpen}
+      />
+    </Fragment>
   );
 };
 
 DislikeButton.propTypes = {
-  onClick: PropTypes.func,
-};
-
-DislikeButton.defaultProps = {
-  onClick: null,
+  track: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default DislikeButton;

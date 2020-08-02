@@ -97,7 +97,7 @@ const SearchResultItem = ({
       </a>
       {likeable &&
         (!!liked ? (
-          <DislikeButton />
+          <DislikeButton track={{ id, title }} />
         ) : (
           <LikeButton track={{ id, title, href }} />
         ))}
