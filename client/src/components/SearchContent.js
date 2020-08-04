@@ -30,7 +30,7 @@ const SearchContent = ({ results }) => {
           className={clsx(classes.default)}
           data-testid="search-message"
         >
-          What are you waiting for? Click GO !
+          What are you waiting for? Search now!
         </Typography>
       )) || <SearchResults results={results} />}
     </Box>

@@ -6,6 +6,7 @@ import Box from "@material-ui/core/Box";
 
 import Typography from "./Typography";
 import Alert from "./Alert";
+import Button from "./Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,15 @@ const Welcome = () => {
       >
         Find your favorite tracks and artists.
       </Typography>
+      <Button
+        className={clsx(classes.button)}
+        href="/favorites"
+        data-testid="favorites-link-button"
+      >
+        <Typography variant="subtitle1" className={clsx(classes.default)}>
+          Go to favorites
+        </Typography>
+      </Button>
       <Alert />
     </Box>
   );

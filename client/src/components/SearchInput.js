@@ -98,7 +98,7 @@ const SearchInput = ({ queryTerm, search }) => {
         data-testid="search-submit-button"
       >
         <Typography variant="subtitle1" className={clsx(classes.buttonText)}>
-          Go
+          Search
         </Typography>
       </Button>
     </form>
