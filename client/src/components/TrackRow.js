@@ -110,7 +110,15 @@ const TrackRow = ({ id, href, name, album, duration, favorites }) => {
       {!!liked ? (
         <DislikeButton track={{ id, title: name }} />
       ) : (
-        <LikeButton track={{ id, title: name, href }} />
+        <LikeButton
+          track={{
+            id,
+            name,
+            external_urls: { spotify: href },
+            album,
+            duration,
+          }}
+        />
       )}
     </ListItem>
   );

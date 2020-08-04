@@ -61,6 +61,7 @@ const SearchResultItem = ({
   subtitle,
   likeable,
   favorites,
+  duration_ms,
   ...attrs
 }) => {
   const classes = useStyles();
@@ -99,7 +100,15 @@ const SearchResultItem = ({
         (!!liked ? (
           <DislikeButton track={{ id, title }} />
         ) : (
-          <LikeButton track={{ id, title, href }} />
+          <LikeButton
+            track={{
+              id,
+              name: title,
+              external_urls: { spotify: href },
+              album: { name, images: [image] },
+              duration_ms,
+            }}
+          />
         ))}
     </Box>
   );
@@ -115,6 +124,7 @@ SearchResultItem.propTypes = {
   icon: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
+  duration_ms: PropTypes.number,
   likeable: PropTypes.bool,
 };
 
