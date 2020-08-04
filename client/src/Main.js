@@ -12,6 +12,7 @@ import AuthCallbackPage from "./pages/AuthCallbackPage";
 import ArtistPage from "./pages/ArtistPage";
 import ErrorPage from "./pages/ErrorPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import FavoritesPage from "./pages/FavoritesPage";
 
 import {
   HOME_URL,
@@ -20,12 +21,13 @@ import {
   ARTIST_URL,
   ERROR_URL,
   NOT_FOUND_URL,
+  FAVORITES_URL,
 } from "./routes";
 
 import "./Main.css";
 
 const Main = () => (
-  <Box id="main" style={{justifyContent:"center"}}>
+  <Box id="main" style={{ justifyContent: "center" }}>
     <LogoIcon className="logo" size="medium" />
     <Welcome />
     <Switch>
@@ -33,6 +35,7 @@ const Main = () => (
       <Route exact path={SEARCH_URL} component={SearchPage} />
       <Route path={AUTH_CALLBACK_URL} component={AuthCallbackPage} />
       <Route path={ARTIST_URL} component={ArtistPage} />
+      <Route path={FAVORITES_URL} component={FavoritesPage} />
       <Route path={ERROR_URL} component={ErrorPage} />
       <Route path={NOT_FOUND_URL} component={NotFoundPage} />
       <Redirect to={NOT_FOUND_URL} />

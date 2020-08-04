@@ -33,7 +33,7 @@ const LikeButton = ({ track, addToFavorites, setAlert }) => {
     toggleModal();
     setAlert({
       message: `You have added "${
-        track.title
+        track.name
       }" to your "Favorites" list successfully.`,
     });
   };
@@ -55,7 +55,7 @@ const LikeButton = ({ track, addToFavorites, setAlert }) => {
       <Modal
         title="Add to Favorites"
         message={`¿Are you sure you want to add "${
-          track.title
+          track.name
         }" to your "Favorites" list?`}
         handleConfirm={addToFavs}
         handleClose={toggleModal}
@@ -68,8 +68,19 @@ const LikeButton = ({ track, addToFavorites, setAlert }) => {
 LikeButton.propTypes = {
   track: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    external_urls: PropTypes.shape({
+      spotify: PropTypes.string.isRequired,
+    }).isRequired,
+    album: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          url: PropTypes.string.isRequired,
+        })
+      ),
+    }).isRequired,
+    duration_ms: PropTypes.number.isRequired,
   }).isRequired,
 };
 
