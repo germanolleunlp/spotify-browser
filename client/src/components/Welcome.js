@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Welcome = ({ favorites }) => {
   const classes = useStyles();
-  const showFavorites = Object.keys(favorites).length;
+  const showFavorites = !!Object.keys(favorites).length;
 
   return (
     <Box className={classes.root} data-testid="welcome">
