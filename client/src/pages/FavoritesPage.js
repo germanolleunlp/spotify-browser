@@ -27,6 +27,13 @@ export const FavoritesPage = ({ favorites }) => {
         Favorites
       </Typography>
       <ArtistTopTracks tracks={tracks} />
+      {!tracks.length && (
+        <Box className={classes.root} data-testid="favorites-empty">
+          <Typography variant="h4" className={classes.default} gutterBottom>
+            Your list of favorites is empty.
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };
