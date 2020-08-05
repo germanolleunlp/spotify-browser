@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import clsx from "clsx";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -27,7 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Welcome = ({ favorites }) => {
   const classes = useStyles();
-  const showFavorites = !!Object.keys(favorites).length;
+  const location = useLocation();
+
+  const inFavoritesPage = location.pathname === FAVORITES_URL;
+  const showFavorites = !!Object.keys(favorites).length && !inFavoritesPage;
 
   return (
     <Box className={classes.root} data-testid="welcome">
