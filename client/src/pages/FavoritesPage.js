@@ -9,11 +9,16 @@ import ArtistTopTracks from "../components/ArtistTopTracks";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: `0 ${theme.spacing(4)}px`,
-    margin: `${theme.spacing(4)}px 0`,
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+    margin: theme.spacing(4),
   },
   default: {
     color: theme.palette.common.white,
+  },
+  empty: {
+    padding: theme.spacing(2),
   },
 }));
 
@@ -28,7 +33,7 @@ export const FavoritesPage = ({ favorites }) => {
       </Typography>
       <ArtistTopTracks tracks={tracks} />
       {!tracks.length && (
-        <Box className={classes.root} data-testid="favorites-empty">
+        <Box className={classes.empty} data-testid="favorites-empty">
           <Typography variant="h4" className={classes.default} gutterBottom>
             Your list of favorites is empty.
           </Typography>
