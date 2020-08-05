@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
+import Button from "../components/Button";
 import Typography from "../components/Typography";
 import ArtistTopTracks from "../components/ArtistTopTracks";
 
@@ -20,14 +22,23 @@ const useStyles = makeStyles((theme) => ({
   empty: {
     padding: theme.spacing(2),
   },
+  back: {
+    alignSelf: "center",
+  },
 }));
 
 export const FavoritesPage = ({ favorites }) => {
   const classes = useStyles();
+  const history = useHistory();
   const tracks = Object.keys(favorites).map((key) => favorites[key]);
 
   return (
     <Box data-testid="favorites-page" className={classes.root}>
+      <Button className={classes.back} onClick={history.goBack}>
+        <Typography variant="subtitle1" className={classes.default}>
+          Back
+        </Typography>
+      </Button>
       <Typography variant="h2" className={classes.default}>
         Favorites
       </Typography>
