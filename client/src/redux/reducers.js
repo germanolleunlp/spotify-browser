@@ -78,10 +78,20 @@ const rootReducer = (state = INITIAL_STATE, { type, payload }) => {
       };
     }
     case ADD_TO_FAVORITES: {
-      const { id, ...props } = payload;
       return {
         ...state,
-        favorites: { ...state.favorites, ...{ [id]: props } },
+        favorites: { ...state.favorites, ...{ [payload.id]: payload } },
+      };
+    }
+    case REMOVE_FROM_FAVORITES: {
+      const { id } = payload;
+
+      const favorites = { ...state.favorites };
+      delete favorites[id];
+
+      return {
+        ...state,
+        favorites,
       };
     }
     case REMOVE_FROM_FAVORITES: {

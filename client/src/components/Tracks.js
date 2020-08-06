@@ -21,7 +21,7 @@ const Tracks = ({ classes, items }) => {
       </Typography>
       {(!!items.length && (
         <Box className={classes.items}>
-          {items.map(({ id, name, external_urls, album }) => (
+          {items.map(({ id, name, external_urls, album, duration_ms }) => (
             <SearchResultItem
               data-testid="track"
               key={id}
@@ -32,6 +32,7 @@ const Tracks = ({ classes, items }) => {
               icon={<AlbumIcon />}
               title={name}
               subtitle={album.artists[0].name}
+              duration_ms={duration_ms}
               likeable
             />
           ))}
