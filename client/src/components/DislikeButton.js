@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.common.white,
     backgroundColor: "#999999",
+    borderRadius: 4,
     width: 38,
     height: 38,
     alignSelf: "center",

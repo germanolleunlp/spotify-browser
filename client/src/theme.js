@@ -4,50 +4,50 @@ const theme = {
   },
   palette: {
     primary: {
-      main: "#1DB954",
+      main: "#fbc438",
     },
     secondary: {
-      main: "#ffffff",
+      main: "#023856",
     },
   },
   typography: {
     h1: {
-      fontFamily: "Helvetica Neue",
-      fontWeight: 700,
-      fontSize: "72px",
-      letterSpacing: "-3px",
-      lineHeight: "72px",
-    },
-    h2: {
-      fontFamily: "Helvetica Neue",
+      fontFamily: "Montserrat, Roboto",
       fontWeight: 700,
       fontSize: "59px",
-      letterSpacing: "-3px",
-      lineHeight: "50px",
+      letterSpacing: "-5px",
+      lineHeight: "82px",
     },
-    h3: {
-      fontFamily: "Helvetica Neue",
+    h2: {
+      fontFamily: "Montserrat, Roboto",
       fontWeight: 700,
       fontSize: "46px",
-      letterSpacing: "-3px",
-      lineHeight: "32px",
+      letterSpacing: "-4px",
+      lineHeight: "62px",
     },
-    h4: {
-      fontFamily: "Helvetica Neue",
+    h3: {
+      fontFamily: "Montserrat, Roboto",
       fontWeight: 700,
-      fontSize: "29px",
+      fontSize: "35px",
       letterSpacing: "-2px",
       lineHeight: "42px",
     },
+    h4: {
+      fontFamily: "Montserrat, Roboto",
+      fontWeight: 700,
+      fontSize: "28px",
+      letterSpacing: "-2px",
+      lineHeight: "32px",
+    },
     subtitle1: {
-      fontFamily: "Helvetica Neue",
+      fontFamily: "Montserrat, Roboto",
       fontWeight: 500,
       fontSize: "16px",
       letterSpacing: "0px",
       lineHeight: "22px",
     },
     subtitle2: {
-      fontFamily: "Helvetica Neue",
+      fontFamily: "Montserrat, Roboto",
       fontWeight: 400,
       fontSize: "14px",
       letterSpacing: "0px",

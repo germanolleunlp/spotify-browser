@@ -38,6 +38,7 @@ const useInputStyles = makeStyles((theme) => ({
   input: {
     padding: `0 ${theme.spacing(4)}px`,
     fontSize: theme.typography.h5.fontSize,
+    fontFamily: "Montserrat",
     letterSpacing: "-.005em",
     fontWeight: 900,
     caretColor: theme.palette.primary.main,
