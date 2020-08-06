@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
   root: {
     border: "1px solid",
     borderColor: "var(--parent-mainfill)",
+    borderRadius: 0,
     boxShadow: "none",
     "&:hover": {
       boxShadow: "none",
