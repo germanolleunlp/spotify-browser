@@ -94,6 +94,14 @@ const rootReducer = (state = INITIAL_STATE, { type, payload }) => {
         favorites,
       };
     }
+    case REMOVE_FROM_FAVORITES: {
+      const { id } = payload;
+
+      return {
+        ...state,
+        favorites: { ...state.favorites, ...{ [id]: undefined } },
+      };
+    }
     case SET_ALERT: {
       return {
         ...state,
