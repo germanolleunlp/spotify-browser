@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     margin: "25%",
-    color: theme.palette.secondary.main,
+    color: theme.palette.common.white,
   },
 }));
 
