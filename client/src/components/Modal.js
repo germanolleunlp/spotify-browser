@@ -32,21 +32,19 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   cancel: {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#d9534f",
     textTransform: "initial",
-    borderColor: "#cccccc",
+    color: "#ffffff",
     "&:hover": {
-      backgroundColor: "#e6e6e6",
-      borderColor: "#adadad",
+      backgroundColor: "#bc1914",
     },
   },
   confirm: {
-    backgroundColor: "#0275d8",
+    backgroundColor: "#5cb85c",
     textTransform: "initial",
-    borderColor: "#0275d8",
     color: "#ffffff",
     "&:hover": {
-      backgroundColor: "#01549b",
+      backgroundColor: "#2d7c2d",
     },
   },
 }));
