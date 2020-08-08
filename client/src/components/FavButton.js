@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -6,6 +7,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import Button from "./Button";
 import Modal from "./Modal";
+
+import { addToFavorites } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,19 +18,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FavButton = ({ track }) => {
+const FavButton = ({ track, addToFavorites, favorites }) => {
   const classes = useStyles();
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const addToFavorite = () => {
-    console.log(`Add to favorite ${track.name} - ${track.href}`);
+  const addToFav = () => {
+    addToFavorites(track);
     toggleModal();
   };
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
+
+  if (favorites[track.id]) {
+    return null;
+  }
 
   return (
     <Fragment>
@@ -43,7 +50,7 @@ const FavButton = ({ track }) => {
         message={`¿Are you sure you want to add "${
           track.name
         }" to your "Favorites" list?`}
-        handleConfirm={addToFavorite}
+        handleConfirm={addToFav}
         handleClose={toggleModal}
         isOpen={isOpen}
       />
@@ -70,4 +77,15 @@ FavButton.propTypes = {
   }).isRequired,
 };
 
-export default FavButton;
+const mapStateToProps = ({ root: { favorites } }) => ({
+  favorites,
+});
+
+const mapDispatchToProps = {
+  addToFavorites,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FavButton);
