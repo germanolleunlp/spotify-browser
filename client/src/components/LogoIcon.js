@@ -33,7 +33,7 @@ const LogoIcon = ({ className, size, color }) => {
 LogoIcon.propTypes = {
   className: PropTypes.string,
   size: PropTypes.oneOf(["small", "medium", "large"]),
-  color: PropTypes.oneOf(["primary", "secondary"]),
+  color: PropTypes.string,
 };
 
 LogoIcon.defaultProps = {

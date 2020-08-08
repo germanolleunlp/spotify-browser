@@ -43,11 +43,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(4),
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
+    color: `${theme.palette["bg-default"].main}`,
   },
   buttonText: {
     color: theme.palette["bg-default"].main,
-  }
+  },
 }));
 
 const ArtistPage = ({
@@ -65,6 +65,8 @@ const ArtistPage = ({
     if (artistId) {
       getArtist(artistId);
     }
+
+    window.scrollTo(0, 0);
     // eslint-disable-next-line
   }, [artistId]);
 
