@@ -1,28 +1,73 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
+import { makeStyles } from "@material-ui/core/styles";
 import MuiAlert from "@material-ui/lab/Alert";
 
-const Alert = ({ children, className, figma, ...props }) => {
+import Typography from "./Typography";
+
+import { setAlert } from "../redux/actions";
+
+const useStyles = makeStyles(() => ({
+  root: ({ fixed }) => {
+    if (!fixed) {
+      return {};
+    }
+
+    return {
+      zIndex: 1600,
+      position: "fixed",
+      top: "10%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    };
+  },
+}));
+
+export const Alert = ({ fixed, figma, alert, setAlert }) => {
+  const classes = useStyles({ fixed });
+
+  const onClose = () => {
+    setAlert(null);
+  };
+
   return (
-    <MuiAlert className={clsx(className, figma)} {...props} icon={false}>
-      {children}
-    </MuiAlert>
+    alert && (
+      <MuiAlert
+        className={clsx(classes.root, figma)}
+        icon={false}
+        onClose={onClose}
+      >
+        <Typography figma="figma-typography-text-1">{alert.message}</Typography>
+      </MuiAlert>
+    )
   );
 };
 
 Alert.propTypes = {
-  className: PropTypes.any,
-  figma: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
+  figma: PropTypes.string,
+  fixed: PropTypes.bool,
 };
 
 Alert.defaultProps = {
-  className: "",
   figma: "",
+  fixed: false,
+  setAlert: () => {
+    console.debug("This is a default func");
+  },
 };
 
-export default Alert;
+const mapStateToProps = ({ root: { alert } }) => ({
+  alert,
+});
+
+const mapDispatchToProps = {
+  setAlert,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Alert);
