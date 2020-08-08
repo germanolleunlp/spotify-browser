@@ -9,6 +9,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
 
+import FavButton from "./FavButton";
+
 import { ReactComponent as AlbumIcon } from "../assets/album.svg";
 
 import Typography from "./Typography";
@@ -46,23 +48,22 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: `${theme.palette["bg-default"].main}`,
+  },
 }));
 
-const TrackRow = ({ href, name, album, duration }) => {
+const TrackLink = ({ href, text, ...props }) => (
+  <Link href={href} rel="noopener noreferrer" target="_blank">
+    <Typography {...props}>{text}</Typography>
+  </Link>
+);
+
+const TrackRow = ({ href, name, album, duration, canAddToFav }) => {
   const classes = useStyles();
   const image = album.images.slice(-1)[0];
 
   return (
-    <ListItem
-      className={classes.item}
-      component={Link}
-      href={href}
-      rel="noopener noreferrer"
-      target="_blank"
-      data-testid="track-row"
-    >
+    <ListItem className={classes.item} data-testid="track-row">
       <ListItemAvatar>
         <Avatar
           className={classes.avatar}
@@ -75,22 +76,22 @@ const TrackRow = ({ href, name, album, duration }) => {
       </ListItemAvatar>
       <ListItemText
         primary={
-          <Typography
+          <TrackLink
+            href={href}
+            text={name}
+            figma="figma-typography-text-1"
             className={clsx(classes.name, classes.default)}
-            figma={"figma-typography-text-1"}
             data-testid="track-album-name"
-          >
-            {name}
-          </Typography>
+          />
         }
         secondary={
-          <Typography
+          <TrackLink
+            href={href}
+            text={album.name}
+            figma="figma-typography-text-2"
             className={clsx(classes.album, classes.default)}
-            figma={"figma-typography-text-2"}
             data-testid="track-album-name"
-          >
-            {album.name}
-          </Typography>
+          />
         }
         data-testid="track-name"
       />
@@ -98,14 +99,15 @@ const TrackRow = ({ href, name, album, duration }) => {
         className={classes.textRight}
         primary={
           <Typography
+            figma="figma-typography-text-2"
             className={clsx(classes.duration, classes.default)}
-            figma={"figma-typography-text-2"}
           >
             {duration}
           </Typography>
         }
         data-testid="track-duration"
       />
+      {canAddToFav && <FavButton />}
     </ListItem>
   );
 };
@@ -122,12 +124,14 @@ TrackRow.propTypes = {
     ),
   }).isRequired,
   duration: PropTypes.string.isRequired,
+  canAddToFav: PropTypes.bool,
 };
 
 TrackRow.defaultProps = {
   album: {
     images: [],
   },
+  canAddToFav: false,
 };
 
 export default TrackRow;
