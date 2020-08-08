@@ -12,6 +12,7 @@ import {
   TOKEN_UPDATED,
   SET_ERROR,
   SET_IS_LOADING,
+  ADD_TO_FAVORITES,
 } from "./types";
 
 import {
@@ -153,6 +154,15 @@ export const refreshToken = () => {
           })
         );
       });
+  };
+};
+
+export const addToFavorites = (track) => {
+  return (dispatch) => {
+    dispatch({
+      type: ADD_TO_FAVORITES,
+      payload: track,
+    });
   };
 };
 

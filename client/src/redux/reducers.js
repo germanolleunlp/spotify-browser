@@ -9,6 +9,7 @@ import {
   TOKEN_UPDATED,
   SET_ERROR,
   SET_IS_LOADING,
+  ADD_TO_FAVORITES,
 } from "./types";
 
 const INITIAL_STATE = {
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
   artist: null,
   isLoading: false,
   error: null,
+  favorites: {},
 };
 
 const rootReducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -70,6 +72,12 @@ const rootReducer = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         isLoading: payload,
+      };
+    }
+    case ADD_TO_FAVORITES: {
+      return {
+        ...state,
+        favorites: { ...state.favorites, ...{ [payload.id]: payload } },
       };
     }
     default:

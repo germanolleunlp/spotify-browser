@@ -8,23 +8,27 @@ import TrackRow from "./TrackRow";
 export const ArtistTopTracks = ({ tracks }) => {
   return (
     <List data-testid="artist-top-tracks">
-      {tracks.map(({ id, external_urls, name, album, duration_ms }) => {
-        const duration = new Date(duration_ms)
-          .toISOString()
-          .slice(11, -1)
-          .match(/.*(\d{2}:\d{2}:\d{2})/gm)[0];
+      {tracks.map(
+        ({ id, external_urls, name, album, duration_ms, duration }) => {
+          const getDuration = () =>
+            new Date(duration_ms)
+              .toISOString()
+              .slice(11, -1)
+              .match(/.*(\d{2}:\d{2}:\d{2})/gm)[0];
 
-        return (
-          <TrackRow
-            key={id}
-            href={external_urls.spotify}
-            name={name}
-            album={album}
-            duration={duration}
-            canAddToFav
-          />
-        );
-      })}
+          return (
+            <TrackRow
+              key={id}
+              id={id}
+              href={external_urls.spotify}
+              name={name}
+              album={album}
+              duration={duration || getDuration()}
+              canAddToFav
+            />
+          );
+        }
+      )}
     </List>
   );
 };
