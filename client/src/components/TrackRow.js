@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     width: 50,
     height: 50,
-    borderRadius: 0,
     marginRight: theme.spacing(2),
     backgroundColor: "transparent",
     borderRadius: "10%",

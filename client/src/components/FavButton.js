@@ -8,7 +8,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import Button from "./Button";
 import Modal from "./Modal";
 
-import { addToFavorites } from "../redux/actions";
+import { addToFavorites, setAlert } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FavButton = ({ track, addToFavorites, favorites }) => {
+const FavButton = ({ track, addToFavorites, setAlert, favorites }) => {
   const classes = useStyles();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +26,11 @@ const FavButton = ({ track, addToFavorites, favorites }) => {
   const addToFav = () => {
     addToFavorites(track);
     toggleModal();
+    setAlert({
+      message: `You have added "${
+        track.name
+      }" to your "Favorites" list successfully.`,
+    });
   };
 
   const toggleModal = () => {
@@ -83,6 +88,7 @@ const mapStateToProps = ({ root: { favorites } }) => ({
 
 const mapDispatchToProps = {
   addToFavorites,
+  setAlert,
 };
 
 export default connect(
