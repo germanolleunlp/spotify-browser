@@ -26,6 +26,7 @@ const Albums = ({ albums }) => {
         <SearchResultItem
           data-testid="album"
           key={id}
+          id={id}
           href={external_urls.spotify}
           name={name}
           image={images[1]}

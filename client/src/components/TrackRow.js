@@ -58,7 +58,7 @@ const TrackLink = ({ href, text, ...props }) => (
   </Link>
 );
 
-const TrackRow = ({ href, name, album, duration, canAddToFav }) => {
+const TrackRow = ({ id, href, name, album, duration, canAddToFav }) => {
   const classes = useStyles();
   const image = album.images.slice(-1)[0];
 
@@ -107,7 +107,17 @@ const TrackRow = ({ href, name, album, duration, canAddToFav }) => {
         }
         data-testid="track-duration"
       />
-      {canAddToFav && <FavButton />}
+      {canAddToFav && (
+        <FavButton
+          track={{
+            id,
+            name,
+            external_urls: { spotify: href },
+            album,
+            duration,
+          }}
+        />
+      )}
     </ListItem>
   );
 };
