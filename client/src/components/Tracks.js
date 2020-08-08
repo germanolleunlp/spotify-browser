@@ -31,6 +31,7 @@ const Tracks = ({ classes, items }) => {
               icon={<AlbumIcon />}
               title={name}
               subtitle={album.artists[0].name}
+              canAddToFav
             />
           ))}
         </Box>
