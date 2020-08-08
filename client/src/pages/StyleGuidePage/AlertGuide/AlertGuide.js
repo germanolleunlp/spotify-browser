@@ -7,7 +7,7 @@ import useFigmaAlerts from "../../../hooks/useFigmaAlerts";
 import CodeEditor from "../CodeEditor";
 import Loader from "../../../components/Loader";
 import Typography from "../../../components/Typography";
-import Alert from "../../../components/Alert";
+import { Alert } from "../../../components/Alert";
 
 const AlertGuide = () => {
   const figmaAlerts = useFigmaAlerts();
@@ -34,7 +34,10 @@ const AlertGuide = () => {
                   padding: "10px 0",
                 }}
               >
-                <Alert figma={`figma-${name}`}>
+                <Alert
+                  figma={`figma-${name}`}
+                  alert={{ message: "This is an example" }}
+                >
                   <strong>Well done!</strong> You successfully read{" "}
                   <strong>this important alert message</strong>.
                 </Alert>
