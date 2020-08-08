@@ -51,12 +51,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SearchResultItem = ({
+  id,
   href,
   image,
   name,
   icon,
   title,
   subtitle,
+  duration_ms,
   canAddToFav,
   ...attrs
 }) => {
@@ -91,7 +93,17 @@ const SearchResultItem = ({
           </Typography>
         </Box>
       </a>
-      {canAddToFav && <FavButton />}
+      {canAddToFav && (
+        <FavButton
+          track={{
+            id,
+            name: title,
+            external_urls: { spotify: href },
+            album: { name, images: [image] },
+            duration_ms,
+          }}
+        />
+      )}
     </Box>
   );
 };
