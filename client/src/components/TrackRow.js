@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
@@ -10,6 +11,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
 
 import FavButton from "./FavButton";
+import UnfavButton from "./UnfavButton";
 
 import { ReactComponent as AlbumIcon } from "../assets/album.svg";
 
@@ -57,9 +59,18 @@ const TrackLink = ({ href, text, ...props }) => (
   </Link>
 );
 
-const TrackRow = ({ id, href, name, album, duration, canAddToFav }) => {
+const TrackRow = ({
+  id,
+  href,
+  name,
+  album,
+  duration,
+  canAddToFav,
+  favorites,
+}) => {
   const classes = useStyles();
   const image = album.images.slice(-1)[0];
+  const inFav = favorites[id];
 
   return (
     <ListItem className={classes.item} data-testid="track-row">
@@ -106,17 +117,20 @@ const TrackRow = ({ id, href, name, album, duration, canAddToFav }) => {
         }
         data-testid="track-duration"
       />
-      {canAddToFav && (
-        <FavButton
-          track={{
-            id,
-            name,
-            external_urls: { spotify: href },
-            album,
-            duration,
-          }}
-        />
-      )}
+      {canAddToFav &&
+        (!!inFav ? (
+          <UnfavButton track={{ id, title: name }} />
+        ) : (
+          <FavButton
+            track={{
+              id,
+              name,
+              external_urls: { spotify: href },
+              album,
+              duration,
+            }}
+          />
+        ))}
     </ListItem>
   );
 };
@@ -143,4 +157,8 @@ TrackRow.defaultProps = {
   canAddToFav: false,
 };
 
-export default TrackRow;
+const mapStateToProps = ({ root: { favorites } }) => ({
+  favorites,
+});
+
+export default connect(mapStateToProps)(TrackRow);
