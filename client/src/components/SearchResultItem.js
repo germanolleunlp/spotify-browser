@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 
@@ -6,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 
 import FavButton from "./FavButton";
+import UnfavButton from "./UnfavButton";
 import SearchResultImage from "./SearchResultImage";
 import Typography from "./Typography";
 
@@ -60,9 +62,11 @@ const SearchResultItem = ({
   subtitle,
   duration_ms,
   canAddToFav,
+  favorites,
   ...attrs
 }) => {
   const classes = useStyles();
+  const inFav = favorites[id];
 
   return (
     <Box className={classes.item}>
@@ -93,17 +97,20 @@ const SearchResultItem = ({
           </Typography>
         </Box>
       </a>
-      {canAddToFav && (
-        <FavButton
-          track={{
-            id,
-            name: title,
-            external_urls: { spotify: href },
-            album: { name, images: [image] },
-            duration_ms,
-          }}
-        />
-      )}
+      {canAddToFav &&
+        (!!inFav ? (
+          <UnfavButton track={{ id, title }} />
+        ) : (
+          <FavButton
+            track={{
+              id,
+              name: title,
+              external_urls: { spotify: href },
+              album: { name, images: [image] },
+              duration_ms,
+            }}
+          />
+        ))}
     </Box>
   );
 };
@@ -125,4 +132,8 @@ SearchResultItem.defaultProps = {
   canAddToFav: false,
 };
 
-export default SearchResultItem;
+const mapStateToProps = ({ root: { favorites } }) => ({
+  favorites,
+});
+
+export default connect(mapStateToProps)(SearchResultItem);
