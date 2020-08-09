@@ -1,11 +1,14 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 
 import Button from "./Button";
 import Modal from "./Modal";
+
+import { removeFromFavorites } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UnfavButton = ({ track }) => {
+const UnfavButton = ({ track, removeFromFavorites }) => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,6 +27,7 @@ const UnfavButton = ({ track }) => {
   };
 
   const removeFromFavs = () => {
+    removeFromFavorites(track);
     toggleModal();
   };
 
@@ -56,4 +60,11 @@ UnfavButton.propTypes = {
   }).isRequired,
 };
 
-export default UnfavButton;
+const mapDispatchToProps = {
+  removeFromFavorites,
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(UnfavButton);

@@ -13,6 +13,7 @@ import {
   SET_ERROR,
   SET_IS_LOADING,
   ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES,
   SET_ALERT,
 } from "./types";
 
@@ -162,6 +163,15 @@ export const addToFavorites = (track) => {
   return (dispatch) => {
     dispatch({
       type: ADD_TO_FAVORITES,
+      payload: track,
+    });
+  };
+};
+
+export const removeFromFavorites = (track) => {
+  return (dispatch) => {
+    dispatch({
+      type: REMOVE_FROM_FAVORITES,
       payload: track,
     });
   };
