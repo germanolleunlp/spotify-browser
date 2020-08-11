@@ -32,14 +32,14 @@ class FigmaService
           border_radius = 0
           border_color = 'inherit'
           background = 'inherit'
+          color = nil
           button['children'].each do |props|
-            next unless props['name'] == 'BG'
-
-            border_radius = props['cornerRadius']  || 0
-            background = get_color(props['fills'])
-            border_color = get_color(props['strokes'])
-            # skip rest of props
-            break
+            color = get_color(props['fills']) if props['type'] == 'TEXT'
+            if props['name'] == 'BG'
+              border_radius = props['cornerRadius']  || 0
+              background = get_color(props['fills'])
+              border_color = get_color(props['strokes'])
+            end
           end
 
           result << {
@@ -50,7 +50,8 @@ class FigmaService
               'minHeight' => height,
               'background' => background,
               'border' => "1px solid #{border_color}",
-              'borderRadius' => "#{border_radius}px"
+              'borderRadius' => "#{border_radius}px",
+              'color' => color || 'initial'
             }
           }
         end
