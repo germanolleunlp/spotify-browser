@@ -12,7 +12,6 @@ import { removeFromFavorites, setAlert } from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.common.white,
     alignSelf: "center",
     marginTop: "5px",
   },

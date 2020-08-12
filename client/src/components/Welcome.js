@@ -55,10 +55,7 @@ const Welcome = ({ favorites }) => {
             className={classes.button}
             data-testid="favorites-link-button"
           >
-            <Typography
-              figma={"figma-typography-text-1"}
-              className={classes.default}
-            >
+            <Typography figma={"figma-typography-text-1"}>
               Go to favorites
             </Typography>
           </Button>

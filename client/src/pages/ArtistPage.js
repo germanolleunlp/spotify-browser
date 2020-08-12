@@ -45,9 +45,6 @@ const useStyles = makeStyles((theme) => ({
   default: {
     color: `${theme.palette["bg-default"].main}`,
   },
-  buttonText: {
-    color: theme.palette["bg-default"].main,
-  },
 }));
 
 const ArtistPage = ({
@@ -110,12 +107,7 @@ const ArtistPage = ({
               className={classes.button}
               figma={"figma-button-display-btn-spotify-primary"}
             >
-              <Typography
-                figma={"figma-typography-text-1"}
-                className={clsx(classes.buttonText)}
-              >
-                Back
-              </Typography>
+              <Typography figma={"figma-typography-text-1"}>Back</Typography>
             </Button>
           </Link>
         </Box>

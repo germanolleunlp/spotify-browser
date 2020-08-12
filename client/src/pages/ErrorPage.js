@@ -20,8 +20,8 @@ const tokenStorage = new TokenStorage();
 
 const useStyles = makeStyles((theme) => ({
   default: {
-    color: `${theme.palette["bg-default"].main}`
-  }
+    color: `${theme.palette["bg-default"].main}`,
+  },
 }));
 
 export const ErrorPage = ({ isLoading, error, refreshToken, cleanToken }) => {
@@ -66,12 +66,7 @@ export const ErrorPage = ({ isLoading, error, refreshToken, cleanToken }) => {
           figma={"figma-button-display-btn-spotify-primary"}
           data-testid="back-button"
         >
-          <Typography
-            figma={"figma-typography-text-1"}
-            className={clsx(classes.default)}
-          >
-            Back
-          </Typography>
+          <Typography figma={"figma-typography-text-1"}>Back</Typography>
         </Button>
       </ErrorContent>
     </Box>

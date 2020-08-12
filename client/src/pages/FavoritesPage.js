@@ -40,12 +40,7 @@ export const FavoritesPage = ({ favorites }) => {
         className={classes.back}
         onClick={history.goBack}
       >
-        <Typography
-          figma={"figma-typography-text-1"}
-          className={classes.default}
-        >
-          Back
-        </Typography>
+        <Typography figma={"figma-typography-text-1"}>Back</Typography>
       </Button>
       <Typography
         figma={"figma-typography-display-1"}

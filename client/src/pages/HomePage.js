@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import clsx from "clsx";
 
 import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { REACT_APP_API_VERSION } from "../constants";
 import TokenStorage from "../TokenStorage";
@@ -17,15 +15,8 @@ import Typography from "../components/Typography";
 
 const tokenStorage = new TokenStorage();
 
-const useStyles = makeStyles((theme) => ({
-  buttonText: {
-    color: theme.palette["bg-default"].main
-  }
-}));
-
 export const HomePage = ({ isLoading, error }) => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const classes = useStyles();
 
   if (isLoading || isLoggingIn) {
     return <Loader />;
@@ -56,12 +47,7 @@ export const HomePage = ({ isLoading, error }) => {
           figma={"figma-button-display-btn-spotify-primary"}
           data-testid="login-link"
         >
-          <Typography
-            figma={"figma-typography-text-1"}
-            className={clsx(classes.buttonText)}
-          >
-            Login
-          </Typography>
+          <Typography figma={"figma-typography-text-1"}>Login</Typography>
         </Button>
       </Box>
     );

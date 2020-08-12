@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   },
   confirm: {
     textTransform: "initial",
-    color: theme.palette.common.white,
   },
 }));
 

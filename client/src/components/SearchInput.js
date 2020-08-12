@@ -16,9 +16,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: theme.spacing(3),
   },
-  buttonText: {
-    color: theme.palette["bg-default"].main,
-  }
 }));
 
 const useInputStyles = makeStyles((theme) => ({
@@ -98,12 +95,7 @@ const SearchInput = ({ queryTerm, search }) => {
         type="submit"
         data-testid="search-submit-button"
       >
-        <Typography
-          figma={"figma-typography-text-1"}
-          className={clsx(classes.buttonText)}
-        >
-          Go
-        </Typography>
+        <Typography figma={"figma-typography-text-1"}>Go</Typography>
       </Button>
     </form>
   );
